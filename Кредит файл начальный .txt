@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Подберём лучший кредит или займ за 5 минут. Калькулятор кредита, сравнение банков, выгодные ставки от 6.9%. Онлайн-заявка без посещения офиса.">
+    <title>Кредит Эксперт - Лучшие кредиты и займы России 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .fade-in { animation: fadeIn 0.8s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .star-gold { color: #FFD700; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Липкая шапка -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <span class="text-2xl font-bold text-blue-600">Кредит Эксперт</span>
+            </div>
+            <ul class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                <li><a href="#credits" class="hover:text-blue-600 transition">Кредиты</a></li>
+                <li><a href="#mortgage" class="hover:text-blue-600 transition">Ипотека</a></li>
+                <li><a href="#blog" class="hover:text-blue-600 transition">Блог</a></li>
+                <li><a href="#contacts" class="hover:text-blue-600 transition">Контакты</a></li>
+            </ul>
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 fade-in">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Поможем найти лучший кредит в России за 5 минут</h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-100 max-w-3xl mx-auto">Сравните предложения от 50+ банков, рассчитайте платёж на калькуляторе и оформите заявку онлайн без посещения офиса</p>
+            <button class="bg-white text-blue-600 px-10 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition shadow-xl transform hover:scale-105">Подобрать кредит сейчас</button>
+        </div>
+    </section>
+
+    <!-- Калькулятор кредита -->
+    <section class="py-16 bg-white" id="calculator">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-2xl p-8 md:p-12" x-data="{
+                amount: 500000,
+                months: 24,
+                rate: 12.5,
+                get monthlyPayment() {
+                    const r = this.rate / 100 / 12;
+                    const n = this.months;
+                    const a = this.amount;
+                    return Math.round(a * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+                },
+                get totalPayment() {
+                    return this.monthlyPayment * this.months;
+                },
+                get overpayment() {
+                    return this.totalPayment - this.amount;
+                }
+            }">
+                <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Калькулятор кредита</h2>
+                
+                <div class="space-y-6">
+                    <!-- Сумма кредита -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-3">Сумма кредита: <span class="text-blue-600 text-xl" x-text="amount.toLocaleString('ru-RU')"></span> ₽</label>
+                        <input type="range" x-model="amount" min="50000" max="5000000" step="50000" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-sm text-gray-500 mt-2">
+                            <span>50 000 ₽</span>
+                            <span>5 000 000 ₽</span>
+                        </div>
+                    </div>
+
+                    <!-- Срок кредита -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-3">Срок кредита: <span class="text-blue-600 text-xl" x-text="months"></span> мес.</label>
+                        <input type="range" x-model="months" min="6" max="84" step="6" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-sm text-gray-500 mt-2">
+                            <span>6 мес.</span>
+                            <span>84 мес.</span>
+                        </div>
+                    </div>
+
+                    <!-- Процентная ставка -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-3">Процентная ставка: <span class="text-blue-600 text-xl" x-text="rate"></span>%</label>
+                        <input type="range" x-model="rate" min="5" max="30" step="0.5" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-sm text-gray-500 mt-2">
+                            <span>5%</span>
+                            <span>30%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Результаты -->
+                <div class="mt-10 grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <p class="text-gray-600 mb-2 font-medium">Ежемесячный платёж</p>
+                        <p class="text-3xl font-bold text-blue-600" x-text="monthlyPayment.toLocaleString('ru-RU') + ' ₽'"></p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <p class="text-gray-600 mb-2 font-medium">Общая сумма выплат</p>
+                        <p class="text-3xl font-bold text-green-600" x-text="totalPayment.toLocaleString('ru-RU') + ' ₽'"></p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <p class="text-gray-600 mb-2 font-medium">Переплата</p>
+                        <p class="text-3xl font-bold text-orange-600" x-text="overpayment.toLocaleString('ru-RU') + ' ₽'"></p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">Получить персональные предложения</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Топ-5 банков -->
+    <section class="py-16 bg-gray-50" id="credits">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Топ-5 лучших банков России</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Банк 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-blue-100 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/><path d="M12 3v6"/></svg>
+                        </div>
+                        <div class="flex">
+                            <span class="star-gold">★★★★★</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">АльфаБанк PRO</h3>
+                    <p class="text-gray-600 mb-4">Кредит наличными до 5 млн рублей с возможностью досрочного погашения без комиссий</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-gray-600">Ставка от</p>
+                        <p class="text-3xl font-bold text-blue-600">6.9%</p>
+                    </div>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Оформить онлайн</button>
+                </div>
+
+                <!-- Банк 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-green-100 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div class="flex">
+                            <span class="star-gold">★★★★★</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">СберЭксперт</h3>
+                    <p class="text-gray-600 mb-4">Быстрое одобрение за 1 минуту, деньги на карту в день обращения круглосуточно</p>
+                    <div class="bg-green-50 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-gray-600">Ставка от</p>
+                        <p class="text-3xl font-bold text-green-600">7.5%</p>
+                    </div>
+                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">Оформить онлайн</button>
+                </div>
+
+                <!-- Банк 3 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-purple-100 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2"><path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/><path d="M17.64 15 22 10.64"/><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/></svg>
+                        </div>
+                        <div class="flex">
+                            <span class="star-gold">★★★★☆</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">ВТБ Премиум</h3>
+                    <p class="text-gray-600 mb-4">Специальные условия для зарплатных клиентов и держателей премиальных карт</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-gray-600">Ставка от</p>
+                        <p class="text-3xl font-bold text-purple-600">8.2%</p>
+                    </div>
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">Оформить онлайн</button>
+                </div>
+
+                <!-- Банк 4 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-orange-100 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        <div class="flex">
+                            <span class="star-gold">★★★★☆</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">ТинькоффКредит</h3>
+                    <p class="text-gray-600 mb-4">100% онлайн-оформление без посещения офиса, решение за 2 минуты</p>
+                    <div class="bg-orange-50 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-gray-600">Ставка от</p>
+                        <p class="text-3xl font-bold text-orange-600">9.9%</p>
+                    </div>
+                    <button class="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 transition">Оформить онлайн</button>
+                </div>
+
+                <!-- Банк 5 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-red-100 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.08" y2="12"/></svg>
+                        </div>
+                        <div class="flex">
+                            <span class="star-gold">★★★★☆</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">РоссельхозБанк</h3>
+                    <p class="text-gray-600 mb-4">Льготные программы для сельхозпроизводителей и малого бизнеса</p>
+                    <div class="bg-red-50 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-gray-600">Ставка от</p>
+                        <p class="text-3xl font-bold text-red-600">8.9%</p>
+                    </div>
+                    <button class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">Оформить онлайн</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Почему выбирают нас</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center p-6">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Быстрое одобрение</h3>
+                    <p class="text-gray-600">Решение по кредиту принимается за 1-5 минут. Деньги на карту в день обращения</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Без скрытых комиссий</h3>
+                    <p class="text-gray-600">Прозрачные условия кредитования. Никаких скрытых платежей и дополнительных услуг</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Партнёрская программа</h3>
+                    <p class="text-gray-600">Работаем с 50+ проверенными банками России. Гарантируем лучшие условия на рынке</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блог/Статьи -->
+    <section class="py-16 bg-gray-50" id="blog">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Полезные статьи о кредитах</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%234f46e5' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EКредиты 2026%3C/text%3E%3C/svg%3E" alt="Статья" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Как взять кредит без отказа: 5 лайфхаков 2026 года</h3>
+                        <p class="text-gray-600 mb-4">Узнайте секретные приёмы, которые повысят ваши шансы на одобрение кредита в любом банке России</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Читать далее →</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%2310b981' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EИпотека%3C/text%3E%3C/svg%3E" alt="Статья" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Ипотека для молодых семей: полный гид</h3>
+                        <p class="text-gray-600 mb-4">Льготные программы, субсидии и государственная поддержка - всё о выгодной ипотеке</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Читать далее →</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23f59e0b' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EРефинансирование%3C/text%3E%3C/svg%3E" alt="Статья" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Рефинансирование кредитов: пошаговая инструкция</h3>
+                        <p class="text-gray-600 mb-4">Снизьте ставку по текущим кредитам и экономьте до 200 000 рублей на процентах</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Читать далее →</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23ef4444' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='22' fill='white' text-anchor='middle' dy='.3em'%3EКредитный рейтинг%3C/text%3E%3C/svg%3E" alt="Статья" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Как улучшить кредитную историю за 3 месяца</h3>
+                        <p class="text-gray-600 mb-4">Проверенные методы повышения кредитного рейтинга и исправления плохой истории</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Читать далее →</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%238b5cf6' width='400

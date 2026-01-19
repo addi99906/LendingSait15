@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Yoga - Студия йоги и медитации</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', 'Segoe UI', sans-serif;
+            background: #fafaf8;
+            color: #4a4a4a;
+            line-height: 1.8;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23e8f5e9" width="1200" height="800"/><circle cx="600" cy="400" r="300" fill="%23c8e6c9" opacity="0.3"/><circle cx="600" cy="400" r="200" fill="%23a5d6a7" opacity="0.3"/><circle cx="600" cy="400" r="100" fill="%2381c784" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5em;
+            font-weight: 300;
+            color: #2e7d32;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+        }
+        
+        .hero p {
+            font-size: 1.6em;
+            color: #558b2f;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        
+        .hero-icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 70px;
+            font-weight: 300;
+            color: #2e7d32;
+            letter-spacing: 2px;
+        }
+        
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .direction-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            border-left: 5px solid #81c784;
+        }
+        
+        .direction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-left-color: #2e7d32;
+        }
+        
+        .direction-icon {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .direction-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #2e7d32;
+            font-weight: 400;
+            text-align: center;
+        }
+        
+        .direction-card p {
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .schedule-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+        
+        .schedule-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-header {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .schedule-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 150px;
+            padding: 25px 30px;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+        
+        .schedule-row:hover {
+            background: #f9fdf9;
+        }
+        
+        .schedule-time {
+            font-weight: 600;
+            color: #2e7d32;
+            font-size: 1.1em;
+        }
+        
+        .schedule-class {
+            font-size: 1.1em;
+            color: #4a4a4a;
+        }
+        
+        .schedule-teacher {
+            text-align: right;
+            color: #888;
+            font-size: 0.95em;
+        }
+        
+        .pricing-section {
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured h3,
+        .pricing-card.featured .price,
+        .pricing-card.featured .price-period,
+        .pricing-card.featured ul li {
+            color: white;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .price-period {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        .pricing-features li::before {
+            content: '🧘';
+            margin-right: 12px;
+        }
+        
+        .pricing-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #66bb6a;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .pricing-button:hover {
+            background: #43a047;
+            transform: translateY(-3px);
+        }
+        
+        .pricing-card.featured .pricing-button {
+            background: white;
+            color: #43a047;
+        }
+        
+        .pricing-card.featured .pricing-button:hover {
+            background: #f1f8e9;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            color: white;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: white;
+            color: #2e7d32;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            background: #1b5e20;
+            color: #a5d6a7;
+            text-align: center;
+            padding: 40px 0;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3em; }
+            h2 { font-size: 2.5em; }
+            .schedule-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                text-align: center;
+            }
+            .schedule-teacher { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">🧘‍♀️</div>
+            <h1>Zenith Yoga</h1>
+            <p>Путь к гармонии тела и разума</p>
+        </div>
+    </div>
+
+    <section id="directions">
+        <div class="container">
+            <h2>Направления</h2>
+            <div class="directions-grid">
+                <div class="direction-card">
+                    <div class="direction-icon">🌅</div>
+                    <h3>Хатха-йога</h3>
+                    <p>Классическая практика для всех уровней подготовки. Работа с телом через асаны, дыхание и концентрацию. Идеально для начинающих.</p>
+                </div>
+                
+                <div class="direction-card">
+                    <div class="direction-icon">🔥</div>
+                    <h3>Виньяса-флоу</h3>
+                    <p>Динамичная практика с плавными переходами между асанами. Синхронизация движения и дыхания. Для среднего и продвинутого уровня.</p>
+                </div>
+                
+                <div class="direction-card">
+                    <div class="direction-icon">🌙</div>
+                    <h3>Инь-йога</h3>
+                    <p>Медитативная практика с длительной фиксацией поз. Глубокая работа с соединительными тканями. Релаксация и восстановление.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <h2>Расписание</h2>
+            <div class="schedule-table">
+                <div class="schedule-header">Понедельник - Пятница</div>
+                <div class="schedule-row">
+                    <div class="schedule-time">07:00 - 08:30</div>
+                    <div class="schedule-class">Хатха-йога (утренняя практика)</div>
+                    <div class="schedule-teacher">Анна</div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time">10:00 - 11:30</div>
+                    <div class="schedule-class">Виньяса-флоу</div>
+                    <div class="schedule-teacher">Михаил</div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time">18:00 - 19:30</div>
+                    <div class="schedule-class">Хатха-йога (вечерняя практика)</div>
+                    <div class="schedule-teacher">Анна</div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time">19:45 - 21:00</div>
+                    <div class="schedule-class">Инь-йога</div>
+                    <div class="schedule-teacher">Елена</div>
+                </div>
+            </div>
+            
+            <div class="schedule-table" style="margin-top: 40px;">
+                <div class="schedule-header">Суббота - Воскресенье</div>
+                <div class="schedule-row">
+                    <div class="schedule-time">09:00 - 10:30</div>
+                    <div class="schedule-class">Хатха-йога для начинающих</div>
+                    <div class="schedule-teacher">Анна</div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time">11:00 - 12:30</div>
+                    <div class="schedule-class">Виньяса-флоу</div>
+                    <div class="schedule-teacher">Михаил</div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time">17:00 - 18:30</div>
+                    <div class="schedule-class">Медитация и пранаяма</div>
+                    <div class="schedule-teacher">Елена</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>Абонементы</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Пробное занятие</h3>
+                    <div class="price">500₽</div>
+                    <p class="price-period">одно занятие</p>
+                    <ul class="pricing-features">
+                        <li>Любое направление</li>
+                        <li>Коврик в аренду</li>
+                        <li>Консультация инструктора</li>
+                        <li>Чай после практики</li>
+                    </ul>
+                    <a href="#" class="pricing-button">Записаться</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Стандарт</h3>
+                    <div class="price">4 500₽</div>
+                    <p class="price-period">8 занятий</p>
+                    <ul class="pricing-features">
+                        <li>Все направления</li>
+                        <li>Срок действия 30 дней</li>
+                        <li>Коврик в аренду</li>
+                        <li>Чай и вода</li>
+                        <li>Доступ к раздевалкам</li>
+                    </ul>
+                    <a href="#" class="pricing-button">Купить</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Безлимит</h3>
+                    <div class="price">7 000₽</div>
+                    <p class="price-period">30 дней</p>
+                    <ul class="pricing-features">
+                        <li>Все занятия без ограничений</li>
+                        <li>Все направления</li>
+                        <li>Персональный шкафчик</li>
+                        <li>Чай и вода</li>
+                        <li>10% скидка на семинары</li>
+                    </ul>
+                    <a href="#" class="pricing-button">Купить</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Начните свой путь к гармонии</h2>
+                <p>Запишитесь на пробное занятие и откройте для себя удивительный мир йоги. Наши опытные инструкторы помогут вам на каждом шаге.</p>
+                <a href="#" class="cta-button">Записаться на пробное занятие</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>📍 Москва, ул. Тверская, 25 | 📞 +7 (495) 123-45-67 | 📧 info@zenithyoga.ru</p>
+            <p style="margin-top: 15px;">&copy; 2026 Zenith Yoga. Найдите свой баланс.</p>
+        </div>
+    </footer>
+</body>
+</html>
